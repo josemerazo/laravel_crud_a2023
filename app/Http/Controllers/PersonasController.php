@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Persona;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class PersonasController extends Controller
 {
@@ -29,7 +30,15 @@ class PersonasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        //dd($request);
+        $persona = new Persona();
+        $persona->nombre = $request->nombre;
+        $persona->apellido = $request->apellido;
+        $persona->edad = $request->edad;
+
+        $persona->save();
+        return Redirect::to(route('personas.index'));
     }
 
     /**
@@ -37,7 +46,7 @@ class PersonasController extends Controller
      */
     public function show(Persona $persona)
     {
-        //
+        return  view('persona.form', ["persona" => $persona]);
     }
 
     /**

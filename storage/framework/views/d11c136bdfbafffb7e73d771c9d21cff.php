@@ -1,10 +1,11 @@
 
 <?php $__env->startSection('content'); ?>
     <div class="container">
-        <a class="btn btn-success" href="">Agregar</a>
+        <h1>Listado de personas</h1>
         <table class="table table-bordered">
             <thead>
                 <tr>
+                    <th>Consultar</th>
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Edad</th>
@@ -16,9 +17,10 @@
             <tbody>
                 <?php $__currentLoopData = $personas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $persona): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
+                        <td><a class="btn btn-primary" href="<?php echo e(route('personas.show', $persona->id)); ?>">Consultar</a></td>
                         <td><?php echo e($persona->nombre); ?></td>
-                        <td><?php echo e($persona->edad); ?></td>
                         <td><?php echo e($persona->apellido); ?></td>
+                        <td><?php echo e($persona->edad); ?></td>
                         <td>
                             <a class="btn btn-warning" href="<?php echo e(route('personas.edit', [$persona])); ?>">
                                 <i class="fa fa-edit"></i>Editar
@@ -37,6 +39,7 @@
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </tbody>
         </table>
+        <a class="btn btn-success" href="<?php echo e(url('personas/create')); ?>">Agregar</a>
     </div>
 <?php $__env->stopSection(); ?>
 

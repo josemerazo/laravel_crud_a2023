@@ -1,10 +1,11 @@
 @extends('template')
 @section('content')
     <div class="container">
-        <a class="btn btn-success" href="">Agregar</a>
+        <h1>Listado de personas</h1>
         <table class="table table-bordered">
             <thead>
                 <tr>
+                    <th>Consultar</th>
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Edad</th>
@@ -16,9 +17,10 @@
             <tbody>
                 @foreach ($personas as $persona)
                     <tr>
+                        <td><a class="btn btn-primary" href="{{ route('personas.show', $persona->id) }}">Consultar</a></td>
                         <td>{{ $persona->nombre }}</td>
-                        <td>{{ $persona->edad }}</td>
                         <td>{{ $persona->apellido }}</td>
+                        <td>{{ $persona->edad }}</td>
                         <td>
                             <a class="btn btn-warning" href="{{ route('personas.edit', [$persona]) }}">
                                 <i class="fa fa-edit"></i>Editar
@@ -37,5 +39,6 @@
                 @endforeach
             </tbody>
         </table>
+        <a class="btn btn-success" href="{{ url('personas/create') }}">Agregar</a>
     </div>
 @endsection

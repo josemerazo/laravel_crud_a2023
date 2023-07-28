@@ -1,21 +1,30 @@
+@php
+    $saludo = 'Nuevas';
+@endphp
 @extends('template')
 @section('content')
-    <h1>Hola vamos a crear</h1>
-    <form>
-        <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                placeholder="Enter email">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-        </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-        </div>
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    <div class="container">
+        <h1>Creación de persona {{ $saludo }}</h1>
+        <form action="{{ url('personas') }}" method="post">
+            @csrf
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input name="nombre" type="text" class="form-control"
+                    value="{{ isset($persona->nombre) ? $persona->nombre : '' }}" id="nombre"
+                    placeholder="Ejemplo: James Jordy">
+
+            </div>
+            <div class="form-group">
+                <label for="apellido">Apellido</label>
+                <input name="apellido" type="text" class="form-control" id="apellido"
+                    value="{{ isset($persona->apellido) ? $persona->apellido : '' }}" placeholder="Ejemplo: Ruiz Panezo">
+            </div>
+            <div class="form-group">
+                <label for="edad">Edad</label>
+                <input name="edad" type="number" step="1" min="0" class="form-control" id="edad"
+                value="{{ isset($persona->edad) ? $persona->edad : '' }}" placeholder="Ejemplo: 12">
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+    </div>
 @endsection
